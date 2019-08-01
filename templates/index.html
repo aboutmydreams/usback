@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="apple-itunes-app" content="app-id=477927812" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
+<head>
+    <title>US app</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="apple-itunes-app" content="app-id=477927812"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
 
-  <body>
-    <a id="openApp">点击打开US</a>
-    <p id="mod_pop" style="display:none;">请在其他浏览器中打开</p>
 
-    <script type="text/javascript">
-      window.onload = function() {
-        function isWeixin() {
-          var ua = navigator.userAgent.toLowerCase(); //获取判断用的对象
-          if (ua.match(/MicroMessenger/i) == "micromessenger") {
-            return true; //微信打开
-          } else {
-            return false; //不是微信打开
-          }
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/css/layouts/marketing.css">
+    <link rel="shortcut icon" href="../static/logo.ico" type="image/x-icon">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?368897b2e1156201d1af226d6309d364";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128629520-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
         }
 
-        document.getElementById("openApp").onclick = function(e) {
-          if (isWeixin()) {
-            var modPop = document.getElementById("mod_pop");
-            modPop.style.display = "block";
-          } else {
-            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-              //ios判断
-              window.location.href = "com.ncuos.usapp100://"; //通过app打开协议来打开app
-              window.setTimeout(function() {
-                window.location.href =
-                  "https://itunes.apple.com/cn/app/id477927812"; //没有弹框打开app则打开app下载地址
-              }, 20);
-            } else if (/(Android)/i.test(navigator.userAgent)) {
-              //Android判断
-              var state = null;
-              try {
-                state = window.open("usapp://");
-              } catch (e) {}
-              if (state) {
-                //window.close();
-              } else {
-                window.location.href =
-                  "https://www.baidu.com";
-              }
-            }
-          }
-        };
-      };
+        gtag('js', new Date());
+        gtag('config', 'UA-128629520-1');
+        gtag('set', {'user_id': 'USER_ID'}); // 使用已登录的 user_id 来设置用户 ID。
     </script>
-  </body>
+
+
+</head>
+
+<body>
+<div class="container-green">
+    <a class="pure-button" id="open_app">点击打开US</a>
+    <p id="mod_pop" style="display:none;">请在其他浏览器中打开</p>
+</div>
+
+<script type="text/javascript" src="../static/index.js"></script>
+
+</body>
 </html>
