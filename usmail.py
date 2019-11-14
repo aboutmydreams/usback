@@ -25,7 +25,7 @@ def iemail(QQ_num, data, em_name):
     # sender = "1097977702@qq.com"
 
     mail_user = "ncuhomer@qq.com"
-    mail_pass = "zmtrfehmhisecici"
+    mail_pass = "fyicicjdfuwwchcg"
     sender = "ncuhomer@qq.com"
 
     receivers = ['{}@qq.com'.format(QQ_num)]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
@@ -50,4 +50,4 @@ def iemail(QQ_num, data, em_name):
     print("邮件发送成功", QQ_num, data)
 
 
-iemail(QQ_num="1661101479@qq.com", data="Dear Xinzhi love you", em_name="可爱的家园人")
+iemail(QQ_num="1474121785@qq.com", data="Dear Xinzhi love you", em_name="可爱的家园人")

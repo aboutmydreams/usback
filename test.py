@@ -9,7 +9,7 @@ false = null = true = ""
 
 
 def userdata(token):
-    url = 'https://us.ncuhomer.cn/api/user/list?page_num=1&page_size=1000'
+    url = 'http://usv2.ncuos.com/api/user/list?page_num=1&page_size=1000'
     header = {
         'authorization': token, }
     res = requests.get(url, headers=header)
@@ -60,7 +60,7 @@ def phone():
 
 
 def birthdata(token):
-    url = 'https://us.ncuhomer.cn/api/user/list?page_num=1&page_size=1000'
+    url = 'http://usv2.ncuos.com/api/user/list?page_num=1&page_size=1000'
     header = {
         'authorization': token}
     res = requests.get(url, headers=header)
@@ -102,4 +102,6 @@ token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZW1lbWJlcl9tZSI6dHJ1ZSwiZXhwIj
 # birthdata(token)
 # phone_data = phone()
 print(birthdata(token))
+
+print(phone())
 
