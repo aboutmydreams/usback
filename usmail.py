@@ -28,7 +28,7 @@ def iemail(QQ_num, data, em_name):
     mail_pass = "fyicicjdfuwwchcg"
     sender = "ncuhomer@qq.com"
 
-    receivers = ['{}@qq.com'.format(QQ_num)]  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+    receivers = [f'{QQ_num}@qq.com']
 
     message = MIMEText("""
     <p>{}, Happy BirthDay !,</p>
@@ -39,7 +39,7 @@ def iemail(QQ_num, data, em_name):
     message['From'] = Header("robot_hao", 'ascii')  # 发件人名字
     message['To'] = Header("测试", 'utf-8')
 
-    subject = '{}'.format(em_name)  # 邮件名字
+    subject = f'{em_name}'
     message['Subject'] = Header(subject, 'ascii')
 
     server = smtplib.SMTP_SSL(mail_host, 465)  # SMTP协议默认端口是25

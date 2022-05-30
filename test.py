@@ -13,8 +13,7 @@ def userdata(token):
     header = {
         'authorization': token, }
     res = requests.get(url, headers=header)
-    data = eval(res.text)
-    return data
+    return eval(res.text)
 
 
 def phone():
@@ -50,13 +49,10 @@ def phone():
 
     datas = []
     for i in us_phone_data:
-        dic = {}
-        dic["realname"] = i["truename"]
-        dic["phone"] = i["phone"]
+        dic = {"realname": i["truename"], "phone": i["phone"]}
         datas.append(dic)
 
-    easydata = str(datas).replace("'", '"')
-    return easydata
+    return str(datas).replace("'", '"')
 
 
 def birthdata(token):
@@ -67,15 +63,16 @@ def birthdata(token):
     data = eval(res.text)
     birth_datas = []
     for user in data:
-        need_datas = []
-        need_datas.append(user["truename"] + user["birthday"])
-        need_datas.append(user['qq'])
-        need_datas.append(user['desc'])
-        need_datas.append(user['photo'])
+        need_datas = [
+            user["truename"] + user["birthday"],
+            user['qq'],
+            user['desc'],
+            user['photo'],
+        ]
+
         birth_datas.append(need_datas)
     yesterday = (datetime.datetime.now()-datetime.timedelta(days=1)).strftime('today%Y-%m-%d')
-    birth_datas.append([yesterday])
-    birth_datas.append(need_datas)
+    birth_datas.extend(([yesterday], need_datas))
     sort_data = list(sorted(birth_datas, key=lambda x: int(x[0][-5:].replace('-', ''))))
     # 把扩展一份没有当前日期的data（循环）
     copy_data = sort_data.copy()
@@ -87,12 +84,14 @@ def birthdata(token):
     # who_birth.insert(0, sort_data[where_yesterday - 1])
     near_birth = {"near_birth": []}
     for i in who_birth:
-        onedata = {}
-        onedata["truename"] = i[0][:-10]
-        onedata["brithday"] = i[0][-5:]
-        onedata["qq"] = i[1]
-        onedata["desc"] = i[2]
-        onedata["phone"] = i[3]
+        onedata = {
+            "truename": i[0][:-10],
+            "brithday": i[0][-5:],
+            "qq": i[1],
+            "desc": i[2],
+            "phone": i[3],
+        }
+
         near_birth["near_birth"].append(onedata)
 
     return near_birth

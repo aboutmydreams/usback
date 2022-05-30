@@ -31,16 +31,17 @@ def birthdata():
 
     birth_datas = []
     for user in data:
-        need_datas = []
-        need_datas.append(user["truename"] + str(user["birthday"]))
-        need_datas.append(user['qq'])
-        need_datas.append(user['desc'])
-        need_datas.append(user['photo'])
+        need_datas = [
+            user["truename"] + str(user["birthday"]),
+            user['qq'],
+            user['desc'],
+            user['photo'],
+        ]
+
         birth_datas.append(need_datas)
     yesterday = (datetime.datetime.now()-datetime.timedelta(days=1)
                  ).strftime('today%Y-%m-%d')
-    birth_datas.append([yesterday])
-    birth_datas.append(need_datas)
+    birth_datas.extend(([yesterday], need_datas))
     sort_data = list(
         sorted(birth_datas, key=lambda x: int(x[0][-5:].replace('-', ''))))
     # 把扩展一份没有当前日期的data（循环）
@@ -51,15 +52,14 @@ def birthdata():
     who_birth = sort_data[where_yesterday+1: where_yesterday + 21]
     near_birth = {"near_birth": []}
     for i in who_birth:
-        onedata = {}
-        onedata["truename"] = i[0][:-10]
-        onedata["brithday"] = i[0][-5:]
-        onedata["qq"] = i[1]
-        onedata["desc"] = i[2]
-        if "pig" in i[3]:
-            onedata["photo"] = random.choice(catgif_list)
-        else:
-            onedata["photo"] = i[3]
+        onedata = {
+            "truename": i[0][:-10],
+            "brithday": i[0][-5:],
+            "qq": i[1],
+            "desc": i[2],
+            "photo": random.choice(catgif_list) if "pig" in i[3] else i[3],
+        }
+
         near_birth["near_birth"].append(onedata)
     ans = make_response(json.dumps(near_birth).replace("'", '"'))
     ans.headers['Access-Control-Allow-Origin'] = '*'
